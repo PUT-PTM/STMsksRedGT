@@ -1,115 +1,125 @@
-#include "stm32f4xx_conf.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx.h"
-#include "stm32f4xx_tim.h"
-#include "misc.h"
-//-----//
-#include "defines.h"
-#include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_hcsr04.h"
-#include "tm_stm32f4_gpio.h"
-#include <stdio.h>
-#define zielona GPIO_Pin_12
-#define pomaranczowa GPIO_Pin_13
-#define czerwona GPIO_Pin_14
-#define niebieska GPIO_Pin_15
-#define wszystkie GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15 //dla wygody
+#include "main.h"
 
-void tim3_init(void)
-{
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	/* Time base configuration */
-	TIM_TimeBaseStructure.TIM_Period = 7200;
-	TIM_TimeBaseStructure.TIM_Prescaler = 1;
-	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1 ;
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
-	TIM_Cmd(TIM3, ENABLE);
-}
-void przerwania_tim3_init(void)
-{
-	NVIC_InitTypeDef NVIC_InitStructure;
-	// numer przerwania
-	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
-	// priorytet g³ówny
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
-	// subpriorytet
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
-	// uruchom dany kana³
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	// zapisz wype³nion¹ strukturê do rejestrów
-	NVIC_Init(&NVIC_InitStructure);
+//Variables
+static __IO uint32_t TimingDelay;
+void UARTSend(const unsigned char * bBuffer, unsigned long bufCount);
+volatile char received_string[MAX_STRLEN+1]; // przetrzymuje otrzymanego stringa
+uint8_t Buffer[6];
+
+int main(void) {
+  
+  unsigned char hello_str[] = "HELLO";
+  u8 loop = 1;
+  
+  initPA15();
+  init_USART1(BT_BAUD);
 
 
-	// wyczyszczenie przerwania od timera 3 (wyst¹pi³o przy konfiguracji timera)
-	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-	// zezwolenie na przerwania od przepe³nienia dla timera 3
-	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
+  while(loop){
 
-}
-void TIM3_IRQHandler(void)
-{
-         	if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
-         	{
-         		GPIO_ResetBits(GPIOD, wszystkie);
-                	// wyzerowanie flagi wyzwolonego przerwania
-                	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-         	}
+    //WyÅ›lij
+    UARTSend(hello_str, sizeof(hello_str));
+    
+    Delay(10000000);
+  }
+	//wylaczenie usarta
+    USART_Cmd(USART1, DISABLE);
 }
 
-void diody_init(void)
+//metody do wysylania stringow do usarta
+//
+void UARTSend(const unsigned char *bBuffer, unsigned long bufCount)
 {
-		GPIO_InitTypeDef  GPIO_InitStructure;
-		/* Configure PD12, PD13, PD14 and PD15 in output pushpull mode */
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15;
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-		GPIO_Init(GPIOD, &GPIO_InitStructure);
+  while(bufCount--)
+  {
+    while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET)
+    {
+    }
+    USART_SendData(USART1, (uint8_t) *bBuffer++);
+  }
 }
-int main(void)
-{
-	SystemInit();
 
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+void setPA15On(){
+    GPIOA->BSRRL = GPIO_Pin_15;
+}
 
-	diody_init();
+void togglePA15(){
+    GPIOA->ODR = GPIO_Pin_15;
+}
 
-	TM_HCSR04_t czujnik;
-	TM_DELAY_Init(); // funkcje opozniajace
+void init_USART1(uint32_t baudrate){
+  
 
-	  if (!TM_HCSR04_Init(&czujnik, GPIOC, GPIO_PIN_13, GPIOE, GPIO_PIN_6)) //
-	  	  {																   //bylo ECHO PD0, TRIGGER PC1
-	        while (1)
-	        {
-	            GPIO_SetBits(GPIOD, czerwona);
-	            Delayms(100);
-	        }
-	  	  }
+  GPIO_InitTypeDef GPIO_InitStruct; 
+  USART_InitTypeDef USART_InitStruct; 
+  NVIC_InitTypeDef NVIC_InitStructure; 
+  
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+  
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7; 
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF; 			
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;		
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;			
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;			
+  
+  GPIO_Init(GPIOB, &GPIO_InitStruct);					
+  
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_USART1); //
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_USART1);
+  
+  USART_InitStruct.USART_BaudRate = baudrate;			
+  USART_InitStruct.USART_WordLength = USART_WordLength_8b;
+  USART_InitStruct.USART_StopBits = USART_StopBits_1;		
+  USART_InitStruct.USART_Parity = USART_Parity_No;		
+  USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None; 
+  USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx; 
+  USART_Init(USART1, &USART_InitStruct);					
+  
+  
+  USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+  
+  NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;		 
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;		
+  NVIC_Init(&NVIC_InitStructure);						
+  
+  USART_Cmd(USART1, ENABLE);
+}
 
-
-	unsigned int i;
-
-
-	while(1)
+void USART1_IRQHandler(void){
+  if( USART_GetITStatus(USART1, USART_IT_RXNE) ){
+    
+    static uint8_t cnt = 0; // string lenght
+    char t = USART1->DR; // sended char in var t
+    
+    if( (t != '$') && (cnt < MAX_STRLEN) )
 	{
-		        TM_HCSR04_Read(&czujnik);
-
-		        if (czujnik.Distance < 0) //blad
-		        {
-		        	GPIO_SetBits(GPIOD, czerwona);
-		        }
-		        else if (czujnik.Distance > 50) //ponad 50cm
-		        {
-		        	GPIO_SetBits(GPIOD, pomaranczowa);
-		        }
-		        else //miedzy 0 a 50 cm
-		        {
-		        	GPIO_SetBits(GPIOD, niebieska);
-		        }
-	}
+      received_string[cnt] = t;
+      cnt++;
+    }
+    else
+	{
+      cnt = 0;
+    }
+  }
 }
 
+void initPA15(){
+  GPIO_InitTypeDef  GPIO_InitStructure;
+  
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+  
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+}
+
+void Delay(__IO uint32_t nCount) {
+  while(nCount--) {
+  }
+}
