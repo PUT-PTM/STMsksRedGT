@@ -4,6 +4,7 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_tim.h"
 #include "misc.h"
+#include "stm32f4xx_exti.h"
 //-----//
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
@@ -33,19 +34,19 @@ void przerwania_tim3_init(void)
 	NVIC_InitTypeDef NVIC_InitStructure;
 	// numer przerwania
 	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
-	// priorytet g³ówny
+	// priorytet gÂ³Ã³wny
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
 	// subpriorytet
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
-	// uruchom dany kana³
+	// uruchom dany kanaÂ³
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	// zapisz wype³nion¹ strukturê do rejestrów
+	// zapisz wypeÂ³nionÂ¹ strukturÃª do rejestrÃ³w
 	NVIC_Init(&NVIC_InitStructure);
 
 
-	// wyczyszczenie przerwania od timera 3 (wyst¹pi³o przy konfiguracji timera)
+	// wyczyszczenie przerwania od timera 3 (wystÂ¹piÂ³o przy konfiguracji timera)
 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-	// zezwolenie na przerwania od przepe³nienia dla timera 3
+	// zezwolenie na przerwania od przepeÂ³nienia dla timera 3
 	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 
 }
@@ -70,14 +71,81 @@ void diody_init(void)
 		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 		GPIO_Init(GPIOD, &GPIO_InitStructure);
 }
+void Conf_GPIO() {
+	/* piny sterujace kierunkiem silnikÃ³w */
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+	/* piny PWM dla serwa i silnika*/
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_8;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+}
+
+
+void Conf_Timer4() {
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+	TIM_TimeBaseStructure.TIM_Period = 65500;
+	TIM_TimeBaseStructure.TIM_Prescaler = 83;
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+	TIM_Cmd(TIM4, ENABLE);
+}
+
+void Conf_PWM() {
+	TIM_OCInitTypeDef TIM_OCInitStructure;
+	GPIO_InitTypeDef GPIO_InitStructure;
+
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+	TIM_OCInitStructure.TIM_Pulse = 0;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	/* KONFIGURACJA 1 KANALU */
+	TIM_OC1Init(TIM4, &TIM_OCInitStructure);
+	TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_TIM4);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+	/* KONFIGURACJA 2 KANALU */
+	TIM_OC3Init(TIM4, &TIM_OCInitStructure);
+	TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_TIM4);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+	GPIO_SetBits(GPIOB, GPIO_Pin_6);
+	GPIO_SetBits(GPIOB, GPIO_Pin_8);
+}
+void serwo_w_lewo(){ TIM4->CCR3 = 1550; }
+void serwo_w_prawo(){ TIM4->CCR3 = 950; }
+void serwo_standard(){ TIM4->CCR3 = 1250; }
+
 int main(void)
 {
 	SystemInit();
 
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	
 	diody_init();
 
+	Conf_GPIO(); // inicjalizacja portow GPIO
+	Conf_Timer4(); // konfiguracja zegara TIM4
+	Conf_PWM(); // inicjalizacja i konfiguracja PWM
 	TM_HCSR04_t czujnik;
 	TM_DELAY_Init(); // funkcje opozniajace
 
@@ -100,16 +168,15 @@ int main(void)
 
 		        if (czujnik.Distance < 0) //blad
 		        {
-		        	GPIO_SetBits(GPIOD, czerwona);
+		        	serwo_standard();
 		        }
 		        else if (czujnik.Distance > 50) //ponad 50cm
 		        {
-		        	GPIO_SetBits(GPIOD, pomaranczowa);
+		        	serwo_w_lewo();
 		        }
 		        else //miedzy 0 a 50 cm
 		        {
-		        	GPIO_SetBits(GPIOD, niebieska);
+		        	serwo_w_prawo();
 		        }
 	}
 }
-
