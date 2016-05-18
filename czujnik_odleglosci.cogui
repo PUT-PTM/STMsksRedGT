@@ -2,7 +2,9 @@
 <workbench version="2.0">
 <workbenchAdvisor/>
 <window>
-<fastViewData fastViewLocation="1024"/>
+<fastViewData fastViewLocation="1024">
+<orientation position="512" view="org.coocox.component.ui.Help"/>
+</fastViewData>
 <perspectiveBar/>
 <page focus="true" label="Workspace - CooCox CoBuilder">
 <editors>
@@ -19,31 +21,28 @@
 </info>
 </editorArea>
 <editor id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" partName="Repository" title="Repository" tooltip="Repository" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory">&#x0A;<subPage horizontalPosition="0" selectedItemId="513" subPageIndex="2" verticalPosition="0"/>
+<input factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory">&#x0A;<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="0" verticalPosition="0"/>
 </input>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/szymon/Documents/Semestr IV/podstawy techniki mikroprocesorowej/czujnik_odleglosci/main.c" title="main.c" tooltip="C:/Users/szymon/Documents/Semestr IV/podstawy techniki mikroprocesorowej/czujnik_odleglosci/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/szymon/Documents/GitHub/czujnik_odleglosci/STMsksRedGT/main.c" title="main.c" tooltip="C:/Users/szymon/Documents/GitHub/czujnik_odleglosci/STMsksRedGT/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/czujnik_odleglosci/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="462" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5346" selectionTopPixel="2674"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_gpio.h" partName="tm_stm32f4_gpio.h" path="C:/Users/szymon/AppData/Local/Temp/Rar$DRa0.116/tm_stm32f4_gpio.h" title="tm_stm32f4_gpio.h" tooltip="C:/Users/szymon/AppData/Local/Temp/Rar$DRa0.116/tm_stm32f4_gpio.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_gpio.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8562" selectionTopPixel="2003"/>
 </editor>
 <editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="1" verticalPosition="0"/>
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="1" verticalPosition="0"/>
 </input>
 </editor>
 </editors>
 <views>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="19">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
 <expanded>
 <element path="/czujnik_odleglosci"/>
-<element path="/czujnik_odleglosci/cmsis"/>
 <element path="/czujnik_odleglosci/cmsis_boot"/>
-<element path="/czujnik_odleglosci/cmsis_boot/startup"/>
 <element path="/czujnik_odleglosci/cmsis_lib"/>
 <element path="/czujnik_odleglosci/cmsis_lib/include"/>
 <element path="/czujnik_odleglosci/cmsis_lib/source"/>
@@ -72,7 +71,7 @@
 </view>
 </views>
 <perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
-<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<perspective editorAreaTrimState="1" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
 <alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
 <alwaysOnActionSet id="org.coocox.welcome.ui.actionSet"/>
@@ -101,21 +100,40 @@
 <hide_toolbar_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
-<view id="org.coocox.component.ui.ComponentView"/>
-<view id="org.coocox.builder.ui.views.ProjectView"/>
-<view id="org.coocox.component.ui.Help"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.ui.console.ConsoleView"/>
-<view id="org.coocox.builder.ui.exampleView"/>
-<fastViewBars/>
+<fastViewBars>
+<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@1bc23ea" orientation="256" selectedTabId="org.coocox.component.ui.ComponentView" style="1">
+<fastViews>
+<view id="org.coocox.component.ui.ComponentView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@13f6a2d" orientation="512" selectedTabId="org.coocox.component.ui.Help" style="1">
+<fastViews>
+<view id="org.coocox.component.ui.Help" ratio="0.3"/>
+<view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="16384" id="org.eclipse.ui.internal.ViewStack@d9e4d9" orientation="512" selectedTabId="org.coocox.builder.ui.views.ProjectView" style="1">
+<fastViews>
+<view id="org.coocox.builder.ui.views.ProjectView" ratio="0.6302476"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="1024" id="org.eclipse.ui.internal.ViewStack@16c994e" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="1">
+<fastViews>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1070d2" orientation="256" selectedTabId="org.coocox.builder.ui.exampleView" style="1">
+<fastViews>
+<view id="org.coocox.builder.ui.exampleView" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1bc23ea">
-<folder activePageID="org.coocox.component.ui.ComponentView" appearance="2" expanded="2">
-<page content="org.coocox.component.ui.ComponentView" label="Components"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<folder appearance="2" expanded="2">
+<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="stickyFolderRight" ratio="0.749499" ratioLeft="748" ratioRight="250" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1bc23ea">
@@ -125,41 +143,32 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@16c994e" ratio="0.6996753" ratioLeft="431" ratioRight="185" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1bc23ea">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@1070d2" ratio="0.28241205" ratioLeft="281" ratioRight="714" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1bc23ea">
-<folder activePageID="org.coocox.builder.ui.exampleView" appearance="2" expanded="2">
-<page content="org.coocox.builder.ui.exampleView" label="TIM Examples"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<folder appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.exampleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@13f6a2d" ratio="0.71887034" ratioLeft="560" ratioRight="219" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1070d2">
-<folder activePageID="org.coocox.component.ui.Help" appearance="2" expanded="2">
-<page content="org.coocox.component.ui.Help" label="Help"/>
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<folder appearance="2" expanded="2">
+<page content="org.coocox.component.ui.Help" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <page content="org.coocox.coassistant.view.CoAssistantView" label="LabelNotFound"/>
 <page content="org.coocox.builder.ui.MoreExampleView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-<part id="1"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.44967532" ratioLeft="277" ratioRight="339" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1070d2"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@d9e4d9" ratio="0.3685065" ratioLeft="227" ratioRight="389" relationship="4" relative="org.eclipse.ui.internal.ViewStack@1bc23ea">
-<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
-<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<folder appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </mainWindow>
@@ -187,6 +196,9 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_gpio.h"/>
 <editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
 <org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="1" verticalPosition="0"/>
+</editor>
+<editor factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser">
+<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="0" verticalPosition="0"/>
 </editor>
 </editors>
 <item historyLabel="welcome" index="0"/>
@@ -279,8 +291,15 @@
 <position info="not_deleted" x="1911" y="0"/>
 </item>
 <item historyLabel="Configuration" index="10"/>
-<item active="true" historyLabel="main.c" index="3">
+<item historyLabel="main.c" index="3">
 <position info="not_deleted" x="1485" y="0"/>
+</item>
+<item historyLabel="Repository" index="11"/>
+<item historyLabel="main.c" index="3">
+<position info="not_deleted" x="462" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="3">
+<position info="not_deleted" x="5050" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -289,16 +308,26 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
-<persistable>
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="1" verticalPosition="0"/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_hash.h" tooltip="Serwo/cmsis_lib/include/stm32f4xx_hash.h">
+<persistable path="/Serwo/cmsis_lib/include/stm32f4xx_hash.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_timer_properties.h" tooltip="czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_timer_properties.h">
+<persistable path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_timer_properties.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_hcsr04.h" tooltip="czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_hcsr04.h">
+<persistable path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_hcsr04.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_gpio.h" tooltip="czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_gpio.h">
 <persistable path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_gpio.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_hcsr04.h" tooltip="czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_hcsr04.h">
-<persistable path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_hcsr04.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.h" tooltip="czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_delay.h">
+<persistable path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_delay.h"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.h" tooltip="C:\Users\szymon\Documents\Semestr IV\podstawy techniki mikroprocesorowej\czujnik_odleglosci\cmsis_lib\include\tm_stm32f4_delay.h">
+<persistable uri="file:/C:/Users/szymon/Documents/Semestr%20IV/podstawy%20techniki%20mikroprocesorowej/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_delay.h"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_hcsr04.h" tooltip="C:\Users\szymon\Documents\Semestr IV\podstawy techniki mikroprocesorowej\czujnik_odleglosci\cmsis_lib\include\tm_stm32f4_hcsr04.h">
+<persistable uri="file:/C:/Users/szymon/Documents/Semestr%20IV/podstawy%20techniki%20mikroprocesorowej/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_hcsr04.h"/>
 </file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_timer_properties.h" tooltip="C:\Users\szymon\Documents\Semestr IV\podstawy techniki mikroprocesorowej\czujnik_odleglosci\cmsis_lib\include\tm_stm32f4_timer_properties.h">
 <persistable uri="file:/C:/Users/szymon/Documents/Semestr%20IV/podstawy%20techniki%20mikroprocesorowej/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_timer_properties.h"/>
@@ -321,19 +350,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="czujnik_odleglosci/cmsis_boot/stm32f4xx.h">
 <persistable path="/czujnik_odleglosci/cmsis_boot/stm32f4xx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.h" tooltip="czujnik_odleglosci/cmsis_boot/system_stm32f4xx.h">
-<persistable path="/czujnik_odleglosci/cmsis_boot/system_stm32f4xx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="czujnik_odleglosci/main.c">
-<persistable path="/czujnik_odleglosci/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="czujnik_odleglosci/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/czujnik_odleglosci/cmsis_boot/system_stm32f4xx.c"/>
-</file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>&#x0A;<subPage horizontalPosition="0" selectedItemId="522" subPageIndex="2" verticalPosition="0"/>
-</persistable>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_gpio.h" tooltip="czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_gpio.h">
 <persistable path="/czujnik_odleglosci/cmsis_lib/include/tm_stm32f4_gpio.h"/>
