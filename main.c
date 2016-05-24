@@ -47,7 +47,7 @@ void odczytaj()
             if (odebraneDane == dlugosc)
             {
             	interpretuj(bufforDanych);
-                if(bufforDanych[0] == 'S' && bufforDanych[1] == 'T' && bufforDanych[2] == 'A' && bufforDanych[3] == 'R' && bufforDanych[4] == 'T')
+                /*if(bufforDanych[0] == 'S' && bufforDanych[1] == 'T' && bufforDanych[2] == 'A' && bufforDanych[3] == 'R' && bufforDanych[4] == 'T')
                 {
                     mrugnij(); mrugnij(); mrugnij(); mrugnij(); mrugnij();
                 }
@@ -62,14 +62,15 @@ void odczytaj()
                     else if(bufforDanych[1] == '2') GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
                     else if(bufforDanych[1] == '3') GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
                     else if(bufforDanych[1] == '4') GPIO_ToggleBits(GPIOD, GPIO_Pin_15);
-                }
+                }*/
             }
 }
 void interpretuj(uint8_t komenda[])
 {
-    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't') { mrugnij(); silnik_przod(50000);}
-    if (komenda[0] == 's' && komenda[1] == 'z' && komenda[2] == 'y' && komenda[3] == 'b' && komenda[4] == 'c' && komenda[5] == 'i' && komenda[6] == 'e' && komenda[7] == 'j') silnik_przod(60000);
-    if (komenda[0] == 'w' && komenda[1] == 'o' && komenda[2] == 'l' && komenda[3] == 'n' && komenda[4] == 'i' && komenda[5] == 'e' && komenda[6] == 'j') silnik_przod(0);
+	GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
+    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't') { mrugnij(); silnik_przod(30000);}
+    if (komenda[0] == 's' && komenda[1] == 'z' && komenda[2] == 'y' && komenda[3] == 'b' && komenda[4] == 'c' && komenda[5] == 'i' && komenda[6] == 'e' && komenda[7] == 'j') silnik_przod(50000);
+    if (komenda[0] == 'w' && komenda[1] == 'o' && komenda[2] == 'l' && komenda[3] == 'n' && komenda[4] == 'i' && komenda[5] == 'e' && komenda[6] == 'j') silnik_przod(10000);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '1') ledON(1);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '2') ledON(2);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '3') ledON(3);
@@ -135,6 +136,7 @@ void USART3_IRQHandler(void)
     if(USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
         odczytaj();
+        GPIO_ToggleBits(GPIOD, zielona);
         while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET) {}
     }
 }
@@ -334,16 +336,16 @@ int main(void)
 	while(1)
 	{
 		silnik_przod(50000);
-		//serwo_standard();
-		/*for (int i = 0; i < 1000000; i++){}
-		serwo_w_prawo();
-		for (int i = 0; i < 1000000; i++){}
 		serwo_standard();
 		for (int i = 0; i < 1000000; i++){}
-		serwo_w_lewo();*/
-		for (int i = 0; i < 10000; i++){}
+		serwo_w_prawo();
+		/*for (int i = 0; i < 1000000; i++){}
+		serwo_standard();
+		for (int i = 0; i < 1000000; i++){}
+		serwo_w_lewo();
+		for (int i = 0; i < 100000000; i++){}
 		silnik_przod(10000);
-		for (int i = 0; i < 10000; i++){}
+		for (int i = 0; i < 100000000; i++){}*/
 
 	}
 }
