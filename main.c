@@ -89,7 +89,7 @@ void mrugnij() {
     for (i; i<1000000; i++) {}
 }
 void szybciej() {
-    //zrÃ³b szyciej serwo o 10%
+    //zrób szyciej serwo o 10%
 }
 void wolniej() {
     //zrob wolniej serwo o 10%
@@ -214,7 +214,7 @@ void Conf_GPIO() {
 void Conf_Timer4() {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	TIM_TimeBaseStructure.TIM_Period = 65500;
+	TIM_TimeBaseStructure.TIM_Period = 60000;
 	TIM_TimeBaseStructure.TIM_Prescaler = 83;
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
@@ -240,8 +240,8 @@ void Conf_PWM() {
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	// KONFIGURACJA 2 KANALU
-	TIM_OC3Init(TIM4, &TIM_OCInitStructure);
-	TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	TIM_OC2Init(TIM4, &TIM_OCInitStructure);
+	TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_TIM4);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -282,19 +282,19 @@ void przerwania_tim3_init(void)
 	NVIC_InitTypeDef NVIC_InitStructure;
 	// numer przerwania
 	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
-	// priorytet gÅ‚Ã³wny
+	// priorytet g³ówny
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
 	// subpriorytet
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
-	// uruchom dany kanaÅ‚
+	// uruchom dany kana³
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	// zapisz wypeÅ‚nionÄ… strukturÄ™ do rejestrÃ³w
+	// zapisz wype³nion¹ strukturê do rejestrów
 	NVIC_Init(&NVIC_InitStructure);
 
 
-	// wyczyszczenie przerwania od timera 3 (wystÄ…piÅ‚o przy konfiguracji timera)
+	// wyczyszczenie przerwania od timera 3 (wyst¹pi³o przy konfiguracji timera)
 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-	// zezwolenie na przerwania od przepeÅ‚nienia dla timera 3
+	// zezwolenie na przerwania od przepe³nienia dla timera 3
 	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 
 }
