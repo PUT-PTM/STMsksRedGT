@@ -240,8 +240,8 @@ void Conf_PWM() {
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	// KONFIGURACJA 2 KANALU
-	TIM_OC2Init(TIM4, &TIM_OCInitStructure);
-	TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	TIM_OC3Init(TIM4, &TIM_OCInitStructure);
+	TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_TIM4);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -257,7 +257,7 @@ void serwo_standard(){ TIM4->CCR3 = 1200; GPIO_ToggleBits(GPIOD, GPIO_Pin_12);}
 
 void silnik_przod(volatile uint16_t speed){
 
-	TIM4->CCR2 = speed;
+	TIM4->CCR1 = speed;
 	GPIO_SetBits(GPIOA, GPIO_Pin_7);
 	GPIO_ResetBits(GPIOA, GPIO_Pin_9);
 }
@@ -292,7 +292,7 @@ void przerwania_tim3_init(void)
 	NVIC_Init(&NVIC_InitStructure);
 
 
-	// wyczyszczenie przerwania od timera 3 (wyst¹pi³o przy konfiguracji timera)
+	// wyczyszczenie przerwania od+ timera 3 (wyst¹pi³o przy konfiguracji timera)
 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
 	// zezwolenie na przerwania od przepe³nienia dla timera 3
 	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
@@ -314,7 +314,7 @@ void TIM3_IRQHandler(void)
 
 int main(void)
 {
-	//SystemInit();
+	SystemInit();
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 
@@ -332,7 +332,7 @@ int main(void)
 
 	while(1)
 	{
-		silnik_przod(50000);
+		//silnik_przod(50000);
 		serwo_standard();
 		for (int i = 0; i < 1000000; i++){}
 		serwo_w_prawo();
@@ -341,7 +341,7 @@ int main(void)
 		for (int i = 0; i < 1000000; i++){}
 		serwo_w_lewo();
 		for (int i = 0; i < 1000000; i++){}
-		silnik_przod(10000);
+		//silnik_przod(10000);
 
 	}
 }
