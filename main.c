@@ -67,9 +67,9 @@ void odczytaj()
 }
 void interpretuj(uint8_t komenda[])
 {
-    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't') mrugnij();
-    if (komenda[0] == 's' && komenda[1] == 'z' && komenda[2] == 'y' && komenda[3] == 'b' && komenda[4] == 'c' && komenda[5] == 'i' && komenda[6] == 'e' && komenda[7] == 'j') szybciej();
-    if (komenda[0] == 'w' && komenda[1] == 'o' && komenda[2] == 'l' && komenda[3] == 'n' && komenda[4] == 'i' && komenda[5] == 'e' && komenda[6] == 'j') wolniej();
+    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't') { mrugnij(); silnik_przod(50000);}
+    if (komenda[0] == 's' && komenda[1] == 'z' && komenda[2] == 'y' && komenda[3] == 'b' && komenda[4] == 'c' && komenda[5] == 'i' && komenda[6] == 'e' && komenda[7] == 'j') silnik_przod(60000);
+    if (komenda[0] == 'w' && komenda[1] == 'o' && komenda[2] == 'l' && komenda[3] == 'n' && komenda[4] == 'i' && komenda[5] == 'e' && komenda[6] == 'j') silnik_przod(0);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '1') ledON(1);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '2') ledON(2);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '3') ledON(3);
@@ -251,15 +251,16 @@ void Conf_PWM() {
 	GPIO_SetBits(GPIOB, GPIO_Pin_8);
 }
 
-void serwo_w_prawo(){ TIM4->CCR3 = 1500; GPIO_ToggleBits(GPIOD, GPIO_Pin_14);}
-void serwo_w_lewo(){ TIM4->CCR3 = 900; GPIO_ToggleBits(GPIOD, GPIO_Pin_13);}
-void serwo_standard(){ TIM4->CCR3 = 1200; GPIO_ToggleBits(GPIOD, GPIO_Pin_12);}
+void serwo_w_prawo(){ TIM4->CCR3 = 1500; }
+void serwo_w_lewo(){ TIM4->CCR3 = 900; }
+void serwo_standard(){ TIM4->CCR3 = 1200; }
 
 void silnik_przod(volatile uint16_t speed){
-
+	GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
 	TIM4->CCR1 = speed;
 	GPIO_SetBits(GPIOA, GPIO_Pin_7);
 	GPIO_ResetBits(GPIOA, GPIO_Pin_9);
+
 }
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -332,16 +333,17 @@ int main(void)
 
 	while(1)
 	{
-		//silnik_przod(50000);
-		serwo_standard();
-		for (int i = 0; i < 1000000; i++){}
+		silnik_przod(50000);
+		//serwo_standard();
+		/*for (int i = 0; i < 1000000; i++){}
 		serwo_w_prawo();
 		for (int i = 0; i < 1000000; i++){}
 		serwo_standard();
 		for (int i = 0; i < 1000000; i++){}
-		serwo_w_lewo();
-		for (int i = 0; i < 1000000; i++){}
-		//silnik_przod(10000);
+		serwo_w_lewo();*/
+		for (int i = 0; i < 10000; i++){}
+		silnik_przod(10000);
+		for (int i = 0; i < 10000; i++){}
 
 	}
 }
