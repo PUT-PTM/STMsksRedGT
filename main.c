@@ -67,8 +67,13 @@ void odczytaj()
 }
 void interpretuj(uint8_t komenda[])
 {
-	GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't') { mrugnij(); silnik_przod(30000);}
+	GPIO_ToggleBits(GPIOD, zielona);
+    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't')
+    {
+    //	mrugnij();
+    	//silnik_przod(30000);
+    	GPIO_ToggleBits(GPIOD, czerwona);
+    }
     if (komenda[0] == 's' && komenda[1] == 'z' && komenda[2] == 'y' && komenda[3] == 'b' && komenda[4] == 'c' && komenda[5] == 'i' && komenda[6] == 'e' && komenda[7] == 'j') silnik_przod(50000);
     if (komenda[0] == 'w' && komenda[1] == 'o' && komenda[2] == 'l' && komenda[3] == 'n' && komenda[4] == 'i' && komenda[5] == 'e' && komenda[6] == 'j') silnik_przod(10000);
     if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '1') ledON(1);
@@ -136,7 +141,7 @@ void USART3_IRQHandler(void)
     if(USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
         odczytaj();
-        GPIO_ToggleBits(GPIOD, zielona);
+        //GPIO_ToggleBits(GPIOD, zielona);
         while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET) {}
     }
 }
