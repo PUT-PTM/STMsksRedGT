@@ -23,10 +23,10 @@
 volatile uint16_t poprawnoscDanych = 0;
 volatile uint16_t odebraneDane = 0;
 volatile uint16_t licznik = 0;
-
+volatile uint8_t znak = 69;
 void odczytaj()
 {
-    const int16_t dlugosc = 10;
+    const int16_t dlugosc = 1;
     uint8_t bufforDanych[dlugosc];
     odebraneDane = 0;
     poprawnoscDanych = 0;
@@ -46,59 +46,57 @@ void odczytaj()
     }
             if (odebraneDane == dlugosc)
             {
-            	interpretuj(bufforDanych);
-                /*if(bufforDanych[0] == 'S' && bufforDanych[1] == 'T' && bufforDanych[2] == 'A' && bufforDanych[3] == 'R' && bufforDanych[4] == 'T')
-                {
-                    mrugnij(); mrugnij(); mrugnij(); mrugnij(); mrugnij();
-                }
-                if(bufforDanych[0] == 'L' && bufforDanych[1] == 'E' && bufforDanych[2] == 'D')
-                {
-                    if (bufforDanych[3] == 'O' && bufforDanych[4] == 'N') GPIO_SetBits(GPIOD, GPIO_Pin_12 |GPIO_Pin_13 |GPIO_Pin_14 |GPIO_Pin_15);
-                    else if (bufforDanych[3] == 'O' && bufforDanych[4] == 'F' && bufforDanych[5] == 'F') GPIO_ResetBits(GPIOD, GPIO_Pin_12 |GPIO_Pin_13 |GPIO_Pin_14 |GPIO_Pin_15);
-                }
-                else if(bufforDanych[0] == 'L')
-                {
-                    if(bufforDanych[1] == '1') GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
-                    else if(bufforDanych[1] == '2') GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
-                    else if(bufforDanych[1] == '3') GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-                    else if(bufforDanych[1] == '4') GPIO_ToggleBits(GPIOD, GPIO_Pin_15);
-                }*/
+                interpretuj(bufforDanych);
             }
 }
 void interpretuj(uint8_t komenda[])
 {
-	GPIO_ToggleBits(GPIOD, zielona);
-    if (komenda[0] == 's' && komenda[1] == 't' && komenda[2] == 'a' && komenda[3] == 'r' && komenda[4] == 't')
-    {
-    //	mrugnij();
-    	//silnik_przod(30000);
-    	GPIO_ToggleBits(GPIOD, czerwona);
-    }
-    if (komenda[0] == 's' && komenda[1] == 'z' && komenda[2] == 'y' && komenda[3] == 'b' && komenda[4] == 'c' && komenda[5] == 'i' && komenda[6] == 'e' && komenda[7] == 'j') silnik_przod(50000);
-    if (komenda[0] == 'w' && komenda[1] == 'o' && komenda[2] == 'l' && komenda[3] == 'n' && komenda[4] == 'i' && komenda[5] == 'e' && komenda[6] == 'j') silnik_przod(10000);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '1') ledON(1);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '2') ledON(2);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '3') ledON(3);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == '4') ledON(4);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == 'o' && komenda[4] == '1') ledOFF(1);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == 'o' && komenda[4] == '2') ledOFF(2);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == 'o' && komenda[4] == '3') ledOFF(3);
-    if (komenda[0] == 'l' && komenda[1] == 'e' && komenda[2] == 'd' && komenda[3] == 'o' && komenda[4] == '4') ledOFF(4);
-    if (komenda[0] == 's' && komenda[1] == 'e' && komenda[2] == 'r' && komenda[3] == 'w' && komenda[4] == 'o' && komenda[5] == 'w') serwo_standard();
-    if (komenda[0] == 's' && komenda[1] == 'e' && komenda[2] == 'r' && komenda[3] == 'w' && komenda[4] == 'o' && komenda[5] == 'a') serwo_w_lewo();
-    if (komenda[0] == 's' && komenda[1] == 'e' && komenda[2] == 'r' && komenda[3] == 'w' && komenda[4] == 'o' && komenda[5] == 's') mrugnij(); mrugnij();mrugnij();mrugnij();mrugnij();mrugnij();
-    if (komenda[0] == 's' && komenda[1] == 'e' && komenda[2] == 'r' && komenda[3] == 'w' && komenda[4] == 'o' && komenda[5] == 'd') serwo_w_prawo();
+    if (komenda[0] == 's') {mrugnij(); mrugnij();mrugnij(); mrugnij();mrugnij(); mrugnij();mrugnij(); mrugnij();mrugnij(); mrugnij();}
+    if (komenda[0] == 'q') {mrugnijPomaranczowa(); mrugnijZielona(); }
+    if (komenda[0] == 'w') {mrugnijPomaranczowa();}
+    if (komenda[0] == 'e') {mrugnijPomaranczowa(); mrugnijCzerwona(); }
+    if (komenda[0] == 'a') {mrugnijZielona();}
+    if (komenda[0] == 'd') {mrugnijCzerwona();}
+    if (komenda[0] == 'z') {mrugnijNiebieska(); mrugnijZielona();}
+    if (komenda[0] == 'x') {mrugnijNiebieska();}
+    if (komenda[0] == 'c') {mrugnijNiebieska(); mrugnijCzerwona();}
+
 }
 void mrugnij() {
     int i = 0;
-    GPIO_ToggleBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-    for (i; i<1000000; i++) {}
+    GPIO_ToggleBits(GPIOD, zielona | pomaranczowa | czerwona | niebieska);
+    for(i; i<500000; i++);
 }
 void szybciej() {
     //zrób szyciej serwo o 10%
 }
 void wolniej() {
     //zrob wolniej serwo o 10%
+}
+
+void mrugnijCzerwona(){
+    int i=0;
+    GPIO_ToggleBits(GPIOD, czerwona);
+    for(i; i<500000; i++);
+    GPIO_ToggleBits(GPIOD, czerwona);
+}
+void mrugnijPomaranczowa(){
+    int i=0;
+    GPIO_ToggleBits(GPIOD, pomaranczowa);
+    for(i; i<500000; i++);
+    GPIO_ToggleBits(GPIOD, pomaranczowa);
+}
+void mrugnijZielona(){
+    int i=0;
+    GPIO_ToggleBits(GPIOD, zielona);
+    for(i; i<500000; i++);
+    GPIO_ToggleBits(GPIOD, zielona);
+}
+void mrugnijNiebieska(){
+    int i=0;
+    GPIO_ToggleBits(GPIOD, niebieska);
+    for(i; i<500000; i++);
+    GPIO_ToggleBits(GPIOD, niebieska);
 }
 
 void ledON(int x) {
@@ -136,12 +134,22 @@ void ledOFF(int x) {
         break;
     }
 }
+
+void send_char(uint16_t c) {
+    char table[6] = {'R', 'E', 'A', 'D', 'Y', '\n'};
+    for(int i=0; i<6; i++){
+    while (USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET)
+        ;
+    USART_SendData(USART3, table[i]);
+    //mrugnij();
+    }
+}
+
 void USART3_IRQHandler(void)
 {
     if(USART_GetITStatus(USART3,USART_IT_RXNE)!=RESET)
     {
         odczytaj();
-        //GPIO_ToggleBits(GPIOD, zielona);
         while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET) {}
     }
 }
@@ -193,6 +201,8 @@ void inicjalizacja()
 
         NVIC_Init(&NVIC_USART);
         NVIC_EnableIRQ(USART3_IRQn);
+
+        //NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 }
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
@@ -263,7 +273,7 @@ void serwo_w_lewo(){ TIM4->CCR3 = 900; }
 void serwo_standard(){ TIM4->CCR3 = 1200; }
 
 void silnik_przod(volatile uint16_t speed){
-	GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
+	//GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
 	TIM4->CCR1 = speed;
 	GPIO_SetBits(GPIOA, GPIO_Pin_7);
 	GPIO_ResetBits(GPIOA, GPIO_Pin_9);
@@ -273,13 +283,14 @@ void silnik_przod(volatile uint16_t speed){
 ///////////////////////////////////////////////////////////////////////////////
 //////////////CZUJNIK /////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+TM_HCSR04_t czujnik;
 void tim3_init(void)
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
 	 //Time base configuration
-	TIM_TimeBaseStructure.TIM_Period = 7200;
-	TIM_TimeBaseStructure.TIM_Prescaler = 1;
+	TIM_TimeBaseStructure.TIM_Period = 8399;
+	TIM_TimeBaseStructure.TIM_Prescaler = 9999;
 	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1 ;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
@@ -296,6 +307,7 @@ void przerwania_tim3_init(void)
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
 	// uruchom dany kana³
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
 	// zapisz wype³nion¹ strukturê do rejestrów
 	NVIC_Init(&NVIC_InitStructure);
 
@@ -308,12 +320,40 @@ void przerwania_tim3_init(void)
 }
 void TIM3_IRQHandler(void)
 {
+	GPIO_ResetBits(GPIOD, wszystkie);
+	czujnik.Distance=-10;
          	if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
          	{
-         		GPIO_ResetBits(GPIOD, wszystkie);
+         		TM_HCSR04_Read(&czujnik);
+
+         				        if (czujnik.Distance < 0) //blad
+         				        {
+         				        	GPIO_SetBits(GPIOD, czerwona);
+         				        }
+         				        else if (czujnik.Distance > 50) //ponad 50cm
+         				        {
+         				        	GPIO_SetBits(GPIOD, pomaranczowa);
+         				        	//silnik_przod(20000);
+         				        }
+         				        else //miedzy 0 a 50 cm
+         				        {
+         				        	GPIO_SetBits(GPIOD, niebieska);
+         				        	//silnik_przod(0);
+         				        }
                 	// wyzerowanie flagi wyzwolonego przerwania
                 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
          	}
+}
+void diody_init(void)
+{
+		GPIO_InitTypeDef  GPIO_InitStructure;
+		/* Configure PD12, PD13, PD14 and PD15 in output pushpull mode */
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13| GPIO_Pin_14| GPIO_Pin_15;
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+		GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+		GPIO_Init(GPIOD, &GPIO_InitStructure);
 }
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
@@ -330,27 +370,41 @@ int main(void)
 	Conf_Timer4(); // konfiguracja zegara TIM4
 	Conf_PWM(); // inicjalizacja i konfiguracja PWM
 
-	przerwania_tim3_init();
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	//tim3_init();
+	//przerwania_tim3_init();
+	diody_init();
 
-	TM_HCSR04_t czujnik;
+
 	TM_DELAY_Init(); // funkcje opozniajace
 
 	int i=0;
 	inicjalizacja();
 
+	if (!TM_HCSR04_Init(&czujnik, GPIOD, GPIO_PIN_0, GPIOC, GPIO_PIN_1)) //
+		  	  {																   //bylo ECHO PD0, TRIGGER PC1
+		        while(1)
+		        {
+		            GPIO_SetBits(GPIOD, czerwona);
+		            Delayms(100);
+		        }
+		  	  }
+
 	while(1)
 	{
-		silnik_przod(50000);
+
+
+		//silnik_przod(50000);
 		serwo_standard();
 		for (int i = 0; i < 1000000; i++){}
 		serwo_w_prawo();
-		/*for (int i = 0; i < 1000000; i++){}
+		for (int i = 0; i < 1000000; i++){}
 		serwo_standard();
 		for (int i = 0; i < 1000000; i++){}
 		serwo_w_lewo();
-		for (int i = 0; i < 100000000; i++){}
-		silnik_przod(10000);
-		for (int i = 0; i < 100000000; i++){}*/
+		for (int i = 0; i < 1000000; i++){}
+		//silnik_przod(10000);
+		//for (int i = 0; i < 100000000; i++){}
 
 	}
 }
