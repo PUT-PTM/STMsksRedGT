@@ -333,12 +333,12 @@ void TIM3_IRQHandler(void)
          				        else if (czujnik.Distance > 50) //ponad 50cm
          				        {
          				        	GPIO_SetBits(GPIOD, pomaranczowa);
-         				        	//silnik_przod(20000);
+         				        	silnik_przod(20000);
          				        }
          				        else //miedzy 0 a 50 cm
          				        {
          				        	GPIO_SetBits(GPIOD, niebieska);
-         				        	//silnik_przod(0);
+         				        	silnik_przod(0);
          				        }
                 	// wyzerowanie flagi wyzwolonego przerwania
                 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
@@ -371,8 +371,8 @@ int main(void)
 	Conf_PWM(); // inicjalizacja i konfiguracja PWM
 
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-	//tim3_init();
-	//przerwania_tim3_init();
+	tim3_init();
+	przerwania_tim3_init();
 	diody_init();
 
 
@@ -393,8 +393,7 @@ int main(void)
 	while(1)
 	{
 
-
-		//silnik_przod(50000);
+/*
 		serwo_standard();
 		for (int i = 0; i < 1000000; i++){}
 		serwo_w_prawo();
@@ -403,8 +402,7 @@ int main(void)
 		for (int i = 0; i < 1000000; i++){}
 		serwo_w_lewo();
 		for (int i = 0; i < 1000000; i++){}
-		//silnik_przod(10000);
-		//for (int i = 0; i < 100000000; i++){}
+		serwo_standard();*/
 
 	}
 }
