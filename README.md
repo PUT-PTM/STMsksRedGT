@@ -21,7 +21,7 @@ Here and now, the list of components
 
 ## Pins connection
 
-In the beggining of our project we wanted to avoid cables. Still no idea how to achieve this.
+At the beggining of our project we wanted to avoid cables. Still no idea how to achieve this.
 
 #### HC-SR04 outputs:
 	Vcc: 5V
@@ -38,7 +38,7 @@ In the beggining of our project we wanted to avoid cables. Still no idea how to 
 
 ## How to use
 
-The code is arleady downloaded to flash of stm32f4 board. You can review or download whole project using Github.
+The code is arleady downloaded to flash of stm32f4 board. You can review or download the whole project using Github.
 To drive sksRedGT you have to download App from Github and install on your smartphone.
 
 
