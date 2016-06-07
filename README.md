@@ -53,9 +53,9 @@ We're thinking about having T-shirts with logo of sksRedGT. Stay tuned.
 
 # We are
 
-# S ## Szymon Kołodziejczak
-# K ## Kuba Krawczyk
-# S ## Szymon Kaszuba
+## S  Szymon Kołodziejczak
+## K  Kuba Krawczyk
+## S  Szymon Kaszuba
 
 Special credits to our friend Maciek
 
