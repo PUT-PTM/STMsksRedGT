@@ -36,26 +36,26 @@ In the beggining of our project we wanted to avoid cables. Still no idea how to 
 #### Engine#2 to ...
 
 
-## How to use:
+## How to use
 
 The code is arleady downloaded to flash of stm32f4 board. You can review or download whole project using Github.
 To drive sksRedGT you have to download App from Github and install on your smartphone.
 
 
-## Application:
+## Application
 
 It's simple Android App which allowed you to take control over sksRedGT by bluetooth.
 Catalog STMsksRedGT/Application contains all the necessary files.
 
-## Future plans:
+## Future plans
 
 We're thinking about having T-shirts with logo of sksRedGT. Stay tuned.
 
 # We are
 
-# S Szymon Kołodziejczak
-# K Kuba Krawczyk
-# S Szymon Kaszuba
+# S ## Szymon Kołodziejczak
+# K ## Kuba Krawczyk
+# S ## Szymon Kaszuba
 
 Special credits to our friend Maciek
 
