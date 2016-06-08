@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="5.2.1 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=czujnik_odleglosci.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\SKSRedGT -TC:\CooCox\CoIDE\configuration\ProgramData\SKSRedGT/arm-gcc-link.ld -g">
+      <target file="czujnik_odleglosci.elf" lastModified="155305fa99e">
+         <source file="..\obj\bluetooth.o" lastModified="155305d0925"/>
+         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="155305b9f3b"/>
+         <source file="..\obj\silniki.o" lastModified="155305b9f91"/>
+         <source file="..\obj\stm32f4xx_usart.o" lastModified="155305b9fff"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="155305ba029"/>
+         <source file="..\obj\main.o" lastModified="155305fa7b0"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="155305ba12d"/>
+         <source file="..\obj\tm_stm32f4_hcsr04.o" lastModified="155305ba17d"/>
+         <source file="..\obj\stm32f4xx_dcmi.o" lastModified="155305ba1de"/>
+         <source file="..\obj\tm_stm32f4_delay.o" lastModified="155305ba243"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="155305ba28c"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="155305ba2e1"/>
+         <source file="..\obj\czujnik.o" lastModified="155305d0a5b"/>
+         <source file="..\obj\stm32f4xx_exti.o" lastModified="155305ba409"/>
+         <source file="..\obj\misc.o" lastModified="155305ba443"/>
+         <source file="..\obj\tm_stm32f4_gpio.o" lastModified="155305ba49d"/>
+         <source file="..\obj\tm_stm32f4_timer_properties.o" lastModified="155305ba4fd"/>
+         <source file="..\obj\stm32f4xx_tim.o" lastModified="155305ba5b5"/>
+      </target>
+   </processor>
+</history>

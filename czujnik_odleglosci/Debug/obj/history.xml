@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\Users\jakub\AppData\Local\Temp\Rar$DRa0.104 -ID:\ -I..\..\..\..\..\Users\jakub\AppData\Local\Temp -ID:\STMsksRedGT\cmsis_lib\include -ID:\STMsksRedGT\cmsis_lib -ID:\STMsksRedGT\cmsis -ID:\STMsksRedGT\cmsis_boot -I..\..\..\..\..\Users\jakub\AppData\Local -ID:\STMsksRedGT">
+      <target file="stm32f4xx_exti.o" lastModified="155305ba409">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="15506c3b0c0"/>
+      </target>
+      <target file="stm32f4xx_gpio.o" lastModified="155305ba28c">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="stm32f4xx_syscfg.o" lastModified="155305b9f3b">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="tm_stm32f4_gpio.o" lastModified="155305ba49d">
+         <source file="..\..\..\cmsis_lib\source\tm_stm32f4_gpio.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="155305ba029">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="stm32f4xx_tim.o" lastModified="155305ba5b5">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="155305ba2e1">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="tm_stm32f4_timer_properties.o" lastModified="155305ba4fd">
+         <source file="..\..\..\cmsis_lib\source\tm_stm32f4_timer_properties.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="misc.o" lastModified="155305ba443">
+         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="tm_stm32f4_hcsr04.o" lastModified="155305ba17d">
+         <source file="..\..\..\cmsis_lib\source\tm_stm32f4_hcsr04.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="czujnik.o" lastModified="155305d0a5b">
+         <source file="C:\Users\jakub\AppData\Local\Temp\Rar$DRa0.679\czujnik.c" lastModified="155305c63a0"/>
+      </target>
+      <target file="bluetooth.o" lastModified="155305d0925">
+         <source file="C:\Users\jakub\AppData\Local\Temp\Rar$DRa0.679\bluetooth.c" lastModified="155305cc12e"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="155305ba12d">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="tm_stm32f4_delay.o" lastModified="155305ba243">
+         <source file="..\..\..\cmsis_lib\source\tm_stm32f4_delay.c" lastModified="155071e2cd0"/>
+      </target>
+      <target file="silniki.o" lastModified="155305b9f91">
+         <source file="C:\Users\jakub\AppData\Local\Temp\Rar$DRa0.679\silniki.c" lastModified="155305b6479"/>
+      </target>
+      <target file="stm32f4xx_dcmi.o" lastModified="155305ba1de">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dcmi.c" lastModified="15506c09bb0"/>
+      </target>
+      <target file="main.o" lastModified="155305fa7b0">
+         <source file="..\..\..\main.c" lastModified="155305fa5e6"/>
+      </target>
+      <target file="stm32f4xx_usart.o" lastModified="155305b9fff">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="15506c41e20"/>
+      </target>
+   </processor>
+</history>
