@@ -20,41 +20,37 @@ Here and now, the list of components
 - Car housing made from lego
 
 
-## Pins connection
-
-At the beggining of our project we wanted to avoid cables. Still no idea how to achieve this.
-
 #### HC-SR04 outputs
                     
-Vcc: 5V
-Gnd: GND
-Trig: PC1
-Echo: PD0
+-Vcc: 5V
+-Gnd: GND
+-Trig: PC1
+-Echo: PD0
 
 #### Bluetooth outputs
 
-Vcc: 3V
-Gnd: GND
-TXD: PC11
-RXD: PC10
+-Vcc: 3V
+-Gnd: GND
+-TXD: PC11
+-RXD: PC10
 
 #### Lego Technic Engine
 
-alternately to AO & AO2 of commutator
+-alternately to AO & AO2 of commutator
 
 #### Servo FUTABA S3003
 
-Vcc: 5V
-Gnd: GND
-Signal: PC11
+-Vcc: 5V
+-Gnd: GND
+-Signal: PC11
 
 #### Commutator
 
-Gnd: GND
-PWMA: PB6
-AIN2: PA9
-AIN1: PA7
-STBY: 5V
+-Gnd: GND
+-PWMA: PB6
+-AIN2: PA9
+-AIN1: PA7
+-STBY: 5V
 
 
 ## How to use
