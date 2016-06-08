@@ -12,9 +12,10 @@ Here and now, the list of components
 - STM32F4 Discovery Board
 - HC-05 bluetooth
 - Ultrasonic ranging module HC-SR04
-- *
-- *
+- Lego Technic Engine
+- Servo FUTABA S3003
 - Qoltec PowerBank
+- Commutator
 - Batteries
 - Car housing made from lego
 
@@ -23,17 +24,37 @@ Here and now, the list of components
 
 At the beggining of our project we wanted to avoid cables. Still no idea how to achieve this.
 
-#### HC-SR04 outputs:
-	Vcc: 5V
-	Trig: PC1
-	Echo: PD0
-	Gnd: GND
+#### HC-SR04 outputs
+                    
+Vcc: 5V
+Gnd: GND
+Trig: PC1
+Echo: PD0
 
-#### Bluetooth outputs:
-	...
-#### Batteries to ...
-#### Engine#1 to ...
-#### Engine#2 to ...
+#### Bluetooth outputs
+
+Vcc: 3V
+Gnd: GND
+TXD: PC11
+RXD: PC10
+
+#### Lego Technic Engine
+
+alternately to AO & AO2 of commutator
+
+#### Servo FUTABA S3003
+
+Vcc: 5V
+Gnd: GND
+Signal: PC11
+
+#### Commutator
+
+Gnd: GND
+PWMA: PB6
+AIN2: PA9
+AIN1: PA7
+STBY: 5V
 
 
 ## How to use
