@@ -61,7 +61,7 @@ To drive sksRedGT you have to download App from Github and install on your smart
 
 ## Application
 
-It's simple Android App which allowed you to take control over sksRedGT by bluetooth.
+It's simple Android App which allows you take control over sksRedGT by bluetooth.
 Catalog STMsksRedGT/Application contains all the necessary files.
 
 ## Future plans
