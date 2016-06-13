@@ -2,7 +2,7 @@
 
 sksRedGT is a smartphone controlled toy car mostly powered by batteries. 
 Car sksRedGT is also faithful copy of the original Alfa Romeo 6969, which didn't actually exist
-(I just make up to fill description cuz one paragraph would look poor; in english every word feels like a shooting star. Make a wish!)
+(I just made it up to fill description cuz one paragraph would look poor; in english every word feels like a shooting star. Make a wish!)
 
 ## Components
 
