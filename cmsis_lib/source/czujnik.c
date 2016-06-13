@@ -76,9 +76,6 @@ void TIM3_IRQHandler(void) // obsluga przerwania timera 3
 		else //miedzy 0 a 50 cm
 		{
 			GPIO_SetBits(GPIOD, niebieska);
-			GPIO_ResetBits(GPIOA, GPIO_Pin_7);
-			GPIO_ResetBits(GPIOA, GPIO_Pin_9);
-
 		}
 		// wyzerowanie flagi wyzwolonego przerwania
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);

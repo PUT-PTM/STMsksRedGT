@@ -7,6 +7,8 @@
 #include "stm32f4xx_syscfg.h"
 #include "tm_stm32f4_delay.h"
 
+#include <stdio.h>
+
 
 volatile uint16_t poprawnoscDanych = 0;
 volatile uint16_t odebraneDane = 0;
@@ -54,82 +56,46 @@ void interpretuj(uint8_t komenda[])
 		GPIO_ResetBits(GPIOA, GPIO_Pin_9);
 	}
 	if (komenda[0] == 'q') {
-		if(dane_serwo>= serwo_min+250)
-		dane_serwo -= 250;
-		if(dane_silnik<=silnik_max-4000)
-		dane_silnik += 4000;
+		if(dane_serwo>= serwo_min+50)
+		dane_serwo -= 50;
+		if(dane_silnik<=silnik_max-500)
+		dane_silnik += 500;
 	}
 	if (komenda[0] == 'w') {
-		if(dane_silnik<=silnik_max-6000)
-		dane_silnik += 6000;
+		if(dane_silnik<=silnik_max-1000)
+		dane_silnik += 1000;
 	}
 	if (komenda[0] == 'e') {
-		if(dane_serwo<= serwo_max-250)
-		dane_serwo += 250;
-		if(dane_silnik<=silnik_max-4000)
-		dane_silnik += 4000;
+		if(dane_serwo<= serwo_max-50)
+		dane_serwo += 50;
+		if(dane_silnik<=silnik_max-500)
+		dane_silnik += 500;
 	}
 	if (komenda[0] == 'a') {
-		if(dane_serwo>= serwo_min+250)
-		dane_serwo -= 250;
+		if(dane_serwo>= serwo_min+100)
+		dane_serwo -= 100;
 	}
 	if (komenda[0] == 'd') {
-		if(dane_serwo<= serwo_max-250)
-		dane_serwo += 250;
+		if(dane_serwo<= serwo_max-100)
+		dane_serwo += 100;
 	}
 	if (komenda[0] == 'z') {
-		if(dane_serwo>= serwo_min+250)
-		dane_serwo -= 250;
-		if(dane_silnik>=silnik_min+4000)
-		dane_silnik -= 4000;
+		if(dane_serwo>= serwo_min+50)
+		dane_serwo -= 50;
+		if(dane_silnik>=silnik_min+500)
+		dane_silnik -= 500;
 	}
 	if (komenda[0] == 'x') {
-		if(dane_silnik>=silnik_min+6000)
-		dane_silnik -= 6000;
+		if(dane_silnik>=silnik_min+1000)
+		dane_silnik -= 1000;
 	}
 	if (komenda[0] == 'c') {
-		if(dane_serwo<= serwo_max-250)
-		dane_serwo += 250;
-		if(dane_silnik>=silnik_min+4000)
-		dane_silnik -= 4000;
-	}
-	if (komenda[0] == 'o') {
-		dane_serwo = 1250;
-	}
-	if (komenda[0] == 'b') {
-		GPIO_ResetBits(GPIOE, GPIO_Pin_9);
-		GPIO_ResetBits(GPIOE, GPIO_Pin_7);
-		Delayms(500);
-		GPIO_SetBits(GPIOA, GPIO_Pin_9);
-		GPIO_ResetBits(GPIOA, GPIO_Pin_7);
-		//ustawTyl();
-	}
-	if (komenda[0] == 'f') {
-		GPIO_ResetBits(GPIOE, GPIO_Pin_9);
-		GPIO_ResetBits(GPIOE, GPIO_Pin_7);
-		Delayms(500);
-		GPIO_SetBits(GPIOA, GPIO_Pin_7);
-		GPIO_ResetBits(GPIOA, GPIO_Pin_9);
-		//ustawPrzod();
+		if(dane_serwo<= serwo_max-50)
+		dane_serwo += 50;
+		if(dane_silnik>=silnik_min+500)
+		dane_silnik -= 500;
 	}
 
-}
-void ustawSilnik(){
-	if (dane_silnik <= silnik_max && dane_silnik >= silnik_min)
-				TIM4->CCR1 = dane_silnik;
-			if (dane_serwo <= serwo_max && dane_serwo >= serwo_min)
-				TIM4->CCR3 = dane_serwo;
-}
-
-void ustawTyl(){
-	GPIO_ResetBits(GPIOA, GPIO_Pin_7);
-			GPIO_SetBits(GPIOA, GPIO_Pin_9);
-
-}
-
-void ustawPrzod(){
-		GPIO_SetBits(GPIOA, GPIO_Pin_7);
-		GPIO_ResetBits(GPIOA, GPIO_Pin_9);
 }
 
 void send_char(char c) {
